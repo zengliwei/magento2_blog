@@ -1,0 +1,54 @@
+<!-- ko if: (allowGuestReply || defaultAuthor) -->
+<div class="block block-blog-post-comment">
+    <div class="block-title">
+        <h3 data-bind="i18n: 'Leave Comment'"></h3>
+    </div>
+    <div class="block-content" data-bind="css: {open: openedReply() == 0}">
+        <form data-bind='event: {submit: postComment}' method="post">
+            <div class="author">
+                <input class="input-text" data-bind="attr: {
+                       placeholder: $t('Author'),
+                       value: defaultAuthor,
+                       disabled: defaultAuthor ? true : false
+                       }" data-validate="{required:true}" name="author"
+                       type="text"/>
+                <input class="input-text" data-bind="attr: {
+                       placeholder: $t('Email'),
+                       value: defaultEmail,
+                       disabled: defaultEmail ? true : false
+                       }" data-validate="{required:true}" name="email"
+                       type="text"/>
+            </div>
+            <div class="content">
+                <textarea class="input-text" data-bind="value: replyContent, attr: {placeholder: $t('Content')}"
+                          data-validate="{required:true}"
+                          name="content"></textarea>
+            </div>
+            <div class="actions">
+                <button class="button" type="submit"><span data-bind="i18n: 'Reply'"></span></button>
+            </div>
+            <input name="parent_id" type="hidden" value="0"/>
+            <input data-bind="value: postId" name="post_id" type="hidden"/>
+        </form>
+    </div>
+</div>
+<!-- /ko -->
+<div class="block block-blog-post-comments">
+    <div class="block-title">
+        <h3 data-bind="i18n: 'Comment List'"></h3>
+    </div>
+    <div class="block-content">
+        <div class="content">
+            <div class="comments">
+                <!-- ko if: comments.length > 0 -->
+                <!-- ko foreach: comments  -->
+                <!-- ko template: getTemplate() --><!-- /ko -->
+                <!-- /ko -->
+                <!-- /ko -->
+                <!-- ko if: comments.length == 0 -->
+                <p class="no-item" data-bind="i18n: 'No matched record.'"></p>
+                <!-- /ko -->
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd"
+      layout="2columns-right">
+    <body>
+        <referenceContainer name="content">
+            <block class="Common\Blog\Block\Post\Grid" name="blog.post.list" template="Common_Blog::post/list.phtml">
+                <block class="Magento\Theme\Block\Html\Pager" name="blog_post_pager"/>
+            </block>
+        </referenceContainer>
+        <referenceContainer name="sidebar.additional">
+            <block class="Common\Blog\Block\Widget\Categories" name="blog.categories"
+                   template="Common_Blog::widget/categories.phtml"/>
+            <block class="Common\Blog\Block\Widget\Tags" name="blog.tags"
+                   template="Common_Blog::widget/tags.phtml"/>
+        </referenceContainer>
+    </body>
+</page>

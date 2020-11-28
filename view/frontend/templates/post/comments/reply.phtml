@@ -1,0 +1,32 @@
+<?php
+/*
+ * Copyright (c) 2020 Zengliwei
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated
+ * documentation files (the "Software"), to deal in the Software without restriction, including without limitation the
+ * rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to
+ * permit persons to whom the Software is furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the
+ * Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
+ * WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFINGEMENT. IN NO EVENT SHALL THE AUTHORS
+ * OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+ * OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ */
+
+use Common\Blog\Model\Post\Comment;
+use Magento\Framework\View\Element\Template;
+
+/* @var Template $block */
+?>
+<div class="reply-form">
+    <form method="post" action="<?= $block->getUrl('blog/post/comment') ?>">
+        <input type="hidden" name="customer_id" value="<?= $block->getData(Comment::FIELD_CUSTOMER_ID) ?>"/>
+        <input type="hidden" name="post_id" value="<?= $block->getData(Comment::FIELD_POST_ID) ?>"/>
+        <input type="hidden" name="parent_id" value="<?= $block->getData(Comment::FIELD_PARENT_ID) ?>"/>
+        <textarea name="content" class="input-text"></textarea>
+        <button class="button"><span><?= __('Reply') ?></span></button>
+    </form>
+</div>

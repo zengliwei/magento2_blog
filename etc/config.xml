@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <blog>
+            <general>
+                <allow_guest_reply>0</allow_guest_reply>
+                <auto_approve_reply>0</auto_approve_reply>
+                <page_size>20</page_size>
+                <date_time_format>M d, Y</date_time_format>
+                <route_name>blog</route_name>
+                <tag_route_name>tag</tag_route_name>
+            </general>
+        </blog>
+    </default>
+</config>

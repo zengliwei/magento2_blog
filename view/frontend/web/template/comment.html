@@ -1,0 +1,54 @@
+<div class="comment">
+    <div class="content" data-bind="html: comment.content"></div>
+    <div class="info">
+        <div class="author" data-bind="text: comment.author"></div>
+        <div class="date" data-bind="text: comment.created_at"></div>
+        <!-- ko if: (allowGuestReply || defaultAuthor) -->
+        <div class="reply">
+            <a data-bind="
+                i18n: 'Reply',
+                attr: {'data-id': comment.id},
+                event: {click: openReply}" href="javascript:"></a>
+        </div>
+        <!-- /ko -->
+    </div>
+    <!-- ko if: (allowGuestReply || defaultAuthor) -->
+    <div class="reply-form"
+         data-bind="css: {open: openedReply() == comment.id}">
+        <form data-bind='event: {submit: postComment}' method="post">
+            <div class="author">
+                <input class="input-text" data-bind="attr: {
+                       placeholder: $t('Author'),
+                       value: defaultAuthor,
+                       disabled: defaultAuthor ? true : false
+                       }" data-validate="{required:true}" name="author"
+                       type="text"/>
+                <input class="input-text" data-bind="attr: {
+                       placeholder: $t('Email'),
+                       value: defaultEmail,
+                       disabled: defaultEmail ? true : false
+                       }" data-validate="{required:true}" name="email"
+                       type="text"/>
+            </div>
+            <div class="content">
+                <textarea class="input-text" data-bind="value: replyContent, attr: {placeholder: $t('Content')}"
+                          data-validate="{required:true}"
+                          name="content"></textarea>
+            </div>
+            <div class="actions">
+                <button class="button" type="submit"><span data-bind="i18n: 'Submit'"></span></button>
+                <a data-bind="event: {click: closeReply}" href="javascript:">
+                    <span data-bind="i18n: 'Cancel'"></span>
+                </a>
+            </div>
+            <input data-bind="value: comment.id" name="parent_id" type="hidden"/>
+            <input data-bind="value: comment.post_id" name="post_id" type="hidden"/>
+        </form>
+    </div>
+    <!-- /ko -->
+    <div class="replies">
+        <!-- ko foreach: replies  -->
+        <!-- ko template: $parent.getTemplate() --><!-- /ko -->
+        <!-- /ko -->
+    </div>
+</div>

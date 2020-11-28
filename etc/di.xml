@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<!--
+  ~ Copyright (c) 2020 Zengliwei
+  ~
+  ~ Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated
+  ~ documentation files (the "Software"), to deal in the Software without restriction, including without limitation the
+  ~ rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to
+  ~ permit persons to whom the Software is furnished to do so, subject to the following conditions:
+  ~
+  ~ The above copyright notice and this permission notice shall be included in all copies or substantial portions of the
+  ~ Software.
+  ~
+  ~ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
+  ~ WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFINGEMENT. IN NO EVENT SHALL THE AUTHORS
+  ~ OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+  ~ OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+  -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+    <preference for="Common\Blog\Api\CategoryRepositoryInterface" type="Common\Blog\Model\CategoryRepository"/>
+    <preference for="Common\Blog\Api\PostRepositoryInterface" type="Common\Blog\Model\PostRepository"/>
+    <preference for="Common\Blog\Api\TagRepositoryInterface" type="Common\Blog\Model\TagRepository"/>
+    <preference for="Common\Blog\Api\Data\PostInterface" type="Common\Blog\Model\Post"/>
+    <preference for="Common\Blog\Api\Data\CategoryInterface" type="Common\Blog\Model\Post\Category"/>
+    <preference for="Common\Blog\Api\Data\CommentInterface" type="Common\Blog\Model\Post\Comment"/>
+    <preference for="Common\Blog\Api\Data\TagInterface" type="Common\Blog\Model\Post\Tag"/>
+
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="blog_post_listing_data_provider" xsi:type="string">
+                    Common\Blog\Model\ResourceModel\Post\Grid\Collection
+                </item>
+                <item name="blog_category_listing_data_provider" xsi:type="string">
+                    Common\Blog\Model\ResourceModel\Post\Category\Grid\Collection
+                </item>
+                <item name="blog_comment_listing_data_provider" xsi:type="string">
+                    Common\Blog\Model\ResourceModel\Post\Comment\Grid\Collection
+                </item>
+                <item name="blog_tag_listing_data_provider" xsi:type="string">
+                    Common\Blog\Model\ResourceModel\Post\Tag\Grid\Collection
+                </item>
+            </argument>
+        </arguments>
+    </type>
+
+</config>

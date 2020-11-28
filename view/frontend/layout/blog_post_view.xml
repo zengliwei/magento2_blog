@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd"
+      layout="1column">
+    <body>
+        <referenceContainer name="content">
+            <block class="Common\Blog\Block\Post" name="blog.post" template="Common_Blog::post.phtml"/>
+            <block class="Common\Blog\Block\Post\Comments" name="blog.post.comments" cacheable="false"
+                   template="Common_Blog::post/comments.phtml"/>
+        </referenceContainer>
+    </body>
+</page>
