@@ -21,6 +21,7 @@ namespace Common\Blog\Block;
 use Common\Blog\Api\Data\PostInterface;
 use Common\Blog\Api\PostRepositoryInterface;
 use Common\Blog\Helper\Url as UrlHelper;
+use Magento\Cms\Model\Template\FilterProvider;
 use Magento\Framework\View\Element\Template;
 
 /**
@@ -33,24 +34,42 @@ class Post extends AbstractBlock
     protected $mediaFolder = \Common\Blog\Model\Post::MEDIA_FOLDER;
 
     /**
+     * @var FilterProvider
+     */
+    protected $filterProvider;
+
+    /**
      * @var PostRepositoryInterface
      */
     protected $postRepository;
 
     /**
+     * @param FilterProvider          $filterProvider
      * @param PostRepositoryInterface $postRepository
      * @param UrlHelper               $urlHelper
      * @param Template\Context        $context
      * @param array                   $data
      */
     public function __construct(
+        FilterProvider $filterProvider,
         PostRepositoryInterface $postRepository,
         UrlHelper $urlHelper,
         Template\Context $context,
         array $data = []
     ) {
+        $this->filterProvider = $filterProvider;
         $this->postRepository = $postRepository;
         parent::__construct($urlHelper, $context, $data);
+    }
+
+    /**
+     * @param string $content
+     * @return string
+     * @throws \Exception
+     */
+    public function filterContent($content)
+    {
+        return $this->filterProvider->getPageFilter()->filter($content);
     }
 
     /**

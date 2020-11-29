@@ -33,7 +33,7 @@ $post = $block->getPost();
             </div>
         <?php endif; ?>
         <div class="post-content">
-            <?= $post->getContent(); ?>
+            <?= $block->filterContent($post->getContent()); ?>
         </div>
     </div>
 </div>
