@@ -4,7 +4,12 @@
     <acl>
         <resources>
             <resource id="Magento_Backend::admin">
-                <resource id="Common_Blog::blog" title="Blog" translate="title" sortOrder="30"/>
+                <resource id="Common_Blog::blog" title="Blog" translate="title" sortOrder="30">
+                    <resource id="Common_Blog::blog_post" title="Blog Posts" translate="title" sortOrder="10"/>
+                    <resource id="Common_Blog::blog_category" title="Blog Categories" translate="title" sortOrder="20"/>
+                    <resource id="Common_Blog::blog_tag" title="Post Tags" translate="title" sortOrder="30"/>
+                    <resource id="Common_Blog::blog_comment" title="Post Comments" translate="title" sortOrder="40"/>
+                </resource>
             </resource>
         </resources>
     </acl>
